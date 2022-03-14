@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\MainController::class, 'index']);
+Route::get('/categories', [\App\Http\Controllers\CategoriesController::class, 'list']);
+Route::get('/categories/{category}', [\App\Http\Controllers\CategoriesController::class, 'category']);
+Route::get('/product/{productId}', [\App\Http\Controllers\ProductController::class, 'product']);
