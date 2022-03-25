@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function getPrice()
+    {
+        return number_format($this->price / 100, 2, ',', ' ') . ' ' . Currency::getCurrency()->symbol;
+    }
 }
