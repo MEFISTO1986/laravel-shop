@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Basket extends Model
 {
@@ -19,12 +20,16 @@ class Basket extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function getCount()
+    public static function getCount()
     {
-        return $this->products()->count();
+        if(Auth::check()) {
+            $basket = Basket::getBasket();
+            return $basket->products->count();
+        }
+        return 0;
     }
 
     public function isEmpty()
@@ -63,9 +68,13 @@ class Basket extends Model
     public static function getBasket()
     {
         $basketId = session('basketId');
+        $user = Auth::user();
+        if (!$user) {
+            return null;
+        }
         if (is_null($basketId)) {
             $basket = Basket::create([
-                'user_id' => 1,
+                'user_id' => $user->id,
             ]);
             session(['basketId' => $basket->id]);
         } else {

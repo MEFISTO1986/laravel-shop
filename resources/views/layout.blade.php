@@ -49,15 +49,34 @@
                         @endguest
 
                         @auth
-                            <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Admin</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('admin') }}">Admin</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('get-logout') }}">Log Out</a></li>
                         @endauth
                     </ul>
 
                     <ul class="nav-shop">
                         <li class="nav-item"><button><i class="ti-search"></i></button></li>
-                        <li class="nav-item"><button onclick="window.location.href = '{{ route('basket') }}'"><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-                        <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
+                        <li class="nav-item">
+                            <button onclick="window.location.href = '{{ route('basket') }}'">
+                                <i class="ti-shopping-cart"></i><span class="nav-shop__circle">{{ \App\Models\Basket::getCount() }}</span>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                        @guest
+                            <span>Покупатель</span>
+                        @endguest
+
+                        @auth
+                            <span>
+                                @if(Auth::user()->isAdmin())
+                                    Администратор
+                                @else
+                                    {{ Auth::user()->name }}
+                                @endif
+                            </span>
+                        @endauth
+                            <button><i class="ti-user"></i></button>
+                        </li>
                     </ul>
                 </div>
             </div>

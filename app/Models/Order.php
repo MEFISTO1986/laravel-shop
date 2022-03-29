@@ -17,6 +17,13 @@ class Order extends Model
 
     public function basket()
     {
-        return $this->hasOne(Basket::class);
+        return $this->belongsTo(Basket::class);
+    }
+
+    public function getUser()
+    {
+        $basket = $this->basket;
+        $user = $basket->user;
+        return $user;
     }
 }
