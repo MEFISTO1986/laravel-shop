@@ -9,6 +9,16 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'code',
+        'description',
+        'category_id',
+        'price',
+        'currency_id',
+        'image',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -17,5 +27,10 @@ class Product extends Model
     public function getPrice()
     {
         return number_format($this->price / 100, 2, ',', ' ') . ' ' . Currency::getCurrency()->symbol;
+    }
+
+    public function getPriceNumber()
+    {
+        return number_format($this->price / 100, 2, '.', '');
     }
 }

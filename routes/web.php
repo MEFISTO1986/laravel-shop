@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/orders', [Admin\OrderController::class, 'index'])->name('admin-orders');
 
         Route::resource('/category', Admin\CategoryController::class);
+
+        Route::resource('/product', Admin\ProductController::class);
     });
 
     Route::post('/basket/add/{productId}', [BasketController::class, 'addProduct'])->name('basket-add');

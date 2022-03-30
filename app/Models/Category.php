@@ -9,9 +9,36 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'code',
+        'description',
+        'parent_id',
+        'image'
+    ];
+
+    protected $chain = [];
+
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    protected function getParent($categoryId)
+    {
+        $category = Category::find($categoryId);
+        $this->chain[] = $category->code;
+        if (is_null($category->parent_id)) {
+            return $this->chain;
+        }
+        $parentCategory = Category::find($category->parent_id);
+        return $this->getParent($parentCategory->id);
+    }
+
+    public function getCategoryChain()
+    {
+        $chunks = $this->getParent($this->id);
+        return url(implode('/', array_reverse($chunks)));
     }
 
     public static function getTree()
@@ -32,7 +59,7 @@ class Category extends Model
         return $treeCategories;
     }
 
-    public static function buildTree($categoryId, &$array)
+    protected static function buildTree($categoryId, &$array)
     {
         $childCategories = Category::where('parent_id', $categoryId)->get();
         if ($childCategories->isNotEmpty()) {

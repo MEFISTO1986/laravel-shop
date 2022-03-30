@@ -10,12 +10,7 @@
                             <div class="title">
                                 <h4>Categories</h4>
                             </div>
-                            <nav aria-label="breadcrumb" role="navigation">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Categories</li>
-                                </ol>
-                            </nav>
+                            <x-breadcrumb></x-breadcrumb>
                         </div>
                     </div>
                 </div>
@@ -25,46 +20,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="sitemap">
                                     <h5 class="h5">Categories</h5>
-                                    <ul>
-                                        @foreach($categories as $category)
-                                            <li>
-                                                <a href="#">{{ $category['name'] }}</a>
-                                                <div class="dropdown">
-                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                        <i class="dw dw-more"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                        <a class="dropdown-item" href="#"><i class="dw dw-add"></i> Add</a>
-                                                        <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-                                                        <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-                                                        <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            @if($category['childs'])
-                                                <li class="child">
-                                                    <ul>
-                                                        @foreach($category['childs'] as $child)
-                                                            <li>
-                                                                <a href="#">{{ $child['name'] }}</a>
-                                                                <div class="dropdown">
-                                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                                        <i class="dw dw-more"></i>
-                                                                    </a>
-                                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                                        <a class="dropdown-item" href="#"><i class="dw dw-add"></i> Add</a>
-                                                                        <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-                                                                        <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-                                                                        <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </li>
-                                            @endif
-                                        @endforeach
-                                    </ul>
+                                    <x-category-tree-component :categories="$categories"></x-category-tree-component>
                                 </div>
                             </div>
                         </div>

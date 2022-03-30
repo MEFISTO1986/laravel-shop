@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -26,7 +28,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all()->pluck('name', 'id');
+        $category = null;
+        return view('admin.category.create', compact('categories', 'category'));
     }
 
     /**
@@ -35,9 +39,13 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminCategoryRequest $request)
     {
-        //
+        $path = ($request->has('image')) ? $request->file('image')->store('categories') : null;
+        $params = $request->all();
+        $params['image'] = $path;
+        Category::create($params);
+        return redirect()->route('category.index');
     }
 
     /**
@@ -48,7 +56,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $url = $category->getCategoryChain();
+        return view('admin.category.show', compact('category', 'url'));
     }
 
     /**
@@ -59,7 +68,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $categories = Category::all()->pluck('name', 'id');
+        return view('admin.category.create', compact('category', 'categories'));
     }
 
     /**
@@ -69,9 +79,16 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(AdminCategoryRequest $request, Category $category)
     {
-        //
+        if($category->image && $request->has('image')) {
+            Storage::delete($category->image);
+        }
+        $path = ($request->file('image')) ? $request->file('image')->store('categories') : null;
+        $params = $request->all();
+        $params['image'] = $path;
+        $category->update($params);
+        return redirect()->route('category.index');
     }
 
     /**
@@ -82,6 +99,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        Category::destroy($category->id);
+        return redirect()->route('category.index');
     }
 }

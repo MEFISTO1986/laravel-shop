@@ -6,9 +6,9 @@
     @yield('title')
 
     <!-- Site favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../admin/vendors/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../admin/vendors/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../admin/vendors/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url('admin/vendors/images/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('admin/vendors/images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url('admin/vendors/images/favicon-16x16.png') }}">
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,11 +16,11 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="../admin/vendors/styles/core.css">
-    <link rel="stylesheet" type="text/css" href="../admin/vendors/styles/icon-font.min.css">
-    <link rel="stylesheet" type="text/css" href="../admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="../admin/src/plugins/datatables/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="../admin/vendors/styles/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('admin/vendors/styles/core.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('admin/vendors/styles/icon-font.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('admin/src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('admin/vendors/styles/style.css') }}">
 </head>
 <body>
 @include('admin.parts.preloader')
@@ -105,8 +105,8 @@
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="index.html">
-            <img src="../admin/vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-            <img src="../admin/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
+            <img src="{{ url('admin/vendors/images/deskapp-logo.svg')}}" alt="" class="dark-logo">
+            <img src="{{ url('admin/vendors/images/deskapp-logo-white.svg')}}" alt="" class="light-logo">
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>
