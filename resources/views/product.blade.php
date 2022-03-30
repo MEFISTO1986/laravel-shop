@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    <title>Product: {{ $productId }}</title>
+    <title>Product: {{ $product->name }}</title>
 @endsection
 
 @section('content')
@@ -31,7 +31,7 @@
             <div class="col-lg-6">
                 <div class="owl-carousel owl-theme s_Product_carousel">
                     <div class="single-prd-item">
-                        <img class="img-fluid" src="../images/category/s-p1.jpg" alt="">
+                        <img class="img-fluid" src="{{ Storage::url($product->image) }}" alt="">
                     </div>
                     <!-- <div class="single-prd-item">
                         <img class="img-fluid" src="../images/category/s-p1.jpg" alt="">

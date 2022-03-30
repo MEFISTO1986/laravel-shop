@@ -39,8 +39,7 @@
                                     @isset($categories)
                                         @foreach($categories as $cat)
                                             <li class="filter-list">
-                                                <input onclick="window.location.href = '/{{ $cat->code }}'" @if($category && $cat->code == $category->code) checked @endif class="pixel-radio" type="radio" id="{{ $cat->code }}" name="brand">
-                                                <label for="{{ $cat->code }}">{{ $cat->name }}<span> (3600)</span></label>
+                                                <a href="{{ $cat->getCategoryChain() }}" class="@if($category && $cat->code == $category->code) active @endif" id="{{ $cat->code }}">{{ $cat->name }}<span> ({{ $cat->products->count() }})</span></a>
                                             </li>
                                         @endforeach
                                     @endisset

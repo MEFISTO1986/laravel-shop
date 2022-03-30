@@ -14,11 +14,13 @@ class CategoriesController extends Controller
         return view('categories', ['categories' => $categories, 'category' => $categories->first()]);
     }
 
-    public function category(string $categoryCode)
+    public function category(string $categoryChain)
     {
+        $categoriesArr = explode('/', $categoryChain);
         $categories = Category::all();
+        $code = end($categoriesArr);
         $category = Category::query()
-            ->where('code', $categoryCode)
+            ->where('code', $code)
             ->first();
         return view('categories', ['categories' => $categories, 'category' => $category]);
     }

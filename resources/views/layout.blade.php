@@ -5,17 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @yield('title')
-    <link rel="stylesheet" href="../vendors/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="../vendors/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../vendors/themify-icons/themify-icons.css">
-    <link rel="stylesheet" href="../vendors/linericon/style.css">
-    <link rel="stylesheet" href="../vendors/owl-carousel/owl.theme.default.min.css">
-    <link rel="stylesheet" href="../vendors/owl-carousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="../vendors/nice-select/nice-select.css">
-    <link rel="stylesheet" href="../vendors/nouislider/nouislider.min.css">
-    <link rel="stylesheet" href="../vendors/toastr/toastr.css">
-
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="{{ url('vendors/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url('vendors/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url('vendors/themify-icons/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ url('vendors/linericon/style.css') }}">
+    <link rel="stylesheet" href="{{ url('vendors/owl-carousel/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ url('vendors/owl-carousel/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url('vendors/nice-select/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ url('vendors/nouislider/nouislider.min.css') }}">
+    <link rel="stylesheet" href="{{ url('vendors/toastr/toastr.css') }}">
+    <link rel="stylesheet" href="{{ url('css/style.css') }}">
 </head>
 <body>
 <!--================ Start Header Menu Area =================-->
@@ -178,19 +177,19 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 @if(session()->has('message'))
-    <script src="../vendors/toastr/toastr.min.js"></script>
+    <script src="{{ url('vendors/toastr/toastr.min.js') }}"></script>
     <script>
         toastr.success('{{ session()->get('message') }}');
     </script>
 @endif
 
 
-<script src="../vendors/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="../vendors/skrollr.min.js"></script>
-<script src="../vendors/owl-carousel/owl.carousel.min.js"></script>
-<script src="../vendors/nice-select/jquery.nice-select.min.js"></script>
-<script src="../vendors/jquery.ajaxchimp.min.js"></script>
-<script src="../vendors/mail-script.js"></script>
-<script src="../js/main.js"></script>
+<script src="{{ url("vendors/bootstrap/bootstrap.bundle.min.js") }}"></script>
+<script src="{{ url("vendors/skrollr.min.js") }}"></script>
+<script src="{{ url("vendors/owl-carousel/owl.carousel.min.js") }}"></script>
+<script src="{{ url("vendors/nice-select/jquery.nice-select.min.js") }}"></script>
+<script src="{{ url("vendors/jquery.ajaxchimp.min.js") }}"></script>
+<script src="{{ url("vendors/mail-script.js") }}"></script>
+<script src="{{ url("js/main.js") }}"></script>
 </body>
 </html>

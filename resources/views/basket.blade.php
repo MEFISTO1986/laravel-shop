@@ -45,7 +45,7 @@
                             <td>
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img src="../images/cart/cart1.png" alt="">
+                                        <img width="150" height="100" src="{{ Storage::url($product->image) }}" alt="">
                                     </div>
                                     <div class="media-body">
                                         <p>{{ $product->name }}</p>

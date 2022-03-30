@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function product(string $productId)
+    public function product($categoryCode, $productCode)
     {
-        return view('product', ['productId' => $productId]);
+        $product = Product::where('code', $productCode)->first();
+        $cat = explode('/', $categoryCode);
+        $category = Category::where('code', end($cat))->first();
+        return view('product', compact('category', 'product'));
     }
 }

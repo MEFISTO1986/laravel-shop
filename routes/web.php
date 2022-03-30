@@ -57,7 +57,9 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('get-logout');
 
 Route::get('/', [MainController::class, 'index'])->name('main');
 
-Route::get('/categories', [CategoriesController::class, 'list'])->name('categoriesList');
-Route::get('/{category}', [CategoriesController::class, 'category'])->name('category');
+Route::get('/{category}/{product}', [ProductController::class, 'product'])->name('product')
+    ->where(['category' => '([A-Za-z0-9_\/]+)*', 'product' => '[A-Za-z0-9_-]+']);
 
-Route::get('/{category}/{product}', [ProductController::class, 'product'])->name('product');
+Route::get('/categories', [CategoriesController::class, 'list'])->name('categoriesList');
+Route::get('/{category}', [CategoriesController::class, 'category'])->name('category')
+    ->where(['category' => '([A-Za-z0-9_\/]+)*']);
