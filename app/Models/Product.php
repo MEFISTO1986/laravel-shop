@@ -24,6 +24,11 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function properties()
+    {
+        return $this->morphMany(Property::class, 'propertiable');
+    }
+
     public function getPrice()
     {
         return number_format($this->price / 100, 2, ',', ' ') . ' ' . Currency::getCurrency()->symbol;

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Basket;
+use App\Models\Product;
+use App\Models\Property;
+use App\Models\Value;
 use Illuminate\Http\Request;
 
 class BasketController extends Controller

@@ -13,7 +13,7 @@
         </div>
         <div class="card-body">
             <p>{{ $product->category->name }}</p>
-            <h4 class="card-product__title"><a href="{{ $product->category->getCategoryChain() }}/{{ $product->code }}">{{ $product->name }}</a></h4>
+            <h4 class="card-product__title"><a href="/products/{{ $product->code }}">{{ $product->name }}</a></h4>
             <p class="card-product__price">{{ $product->getPrice() }}</p>
         </div>
     </div>

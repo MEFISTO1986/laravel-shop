@@ -37,9 +37,11 @@ Route::group(['middleware' => 'auth'], function(){
     ], function(){
         Route::get('/orders', [Admin\OrderController::class, 'index'])->name('admin-orders');
 
+        Route::resource('/product', Admin\ProductController::class)->names([
+            'edit' => 'products.form'
+        ]);
         Route::resource('/category', Admin\CategoryController::class);
 
-        Route::resource('/product', Admin\ProductController::class);
     });
 
     Route::post('/basket/add/{productId}', [BasketController::class, 'addProduct'])->name('basket-add');
@@ -57,9 +59,9 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('get-logout');
 
 Route::get('/', [MainController::class, 'index'])->name('main');
 
-Route::get('/{category}/{product}', [ProductController::class, 'product'])->name('product')
-    ->where(['category' => '([A-Za-z0-9_\/]+)*', 'product' => '[A-Za-z0-9_-]+']);
-
 Route::get('/categories', [CategoriesController::class, 'list'])->name('categoriesList');
-Route::get('/{category}', [CategoriesController::class, 'category'])->name('category')
-    ->where(['category' => '([A-Za-z0-9_\/]+)*']);
+
+Route::get('/products/{product:code}', [ProductController::class, 'product'])->name('product');
+
+Route::get('/categories/{categories}', [CategoriesController::class, 'category'])->name('category')
+    ->where(['categories' => '([A-Za-z0-9_\/]+)*']);

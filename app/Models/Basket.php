@@ -34,7 +34,7 @@ class Basket extends Model
 
     public function isEmpty()
     {
-        return $this->products()->count() == 0;
+        return $this->products->count() == 0;
     }
 
     public function getTotalPrice()

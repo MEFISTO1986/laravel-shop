@@ -38,7 +38,7 @@ class Category extends Model
     public function getCategoryChain()
     {
         $chunks = $this->getParent($this->id);
-        return url(implode('/', array_reverse($chunks)));
+        return url('/categories/'. implode('/', array_reverse($chunks)));
     }
 
     public static function getTree()

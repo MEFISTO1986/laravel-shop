@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -35,6 +37,12 @@ class RouteServiceProvider extends ServiceProvider
             Route::prefix('api')
                 ->middleware('api')
                 ->group(base_path('routes/api.php'));
+        });
+
+        Route::bind('categories', function($categories) {
+            $pathChunks = explode('/', $categories);
+            $endChunk = array_pop($pathChunks);
+            return Category::where('code', strtolower($endChunk))->firstOrFail();
         });
     }
 

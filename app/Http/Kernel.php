@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CheckBasketIsEmpty;
+use App\Http\Middleware\CheckCategoryOrProduct;
 use App\Http\Middleware\CheckIsAdmin;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
